@@ -93,50 +93,19 @@ public class MongoConnect : MonoBehaviour
 
 		var pathMp3 = @"C:\Users\gabri\Documents\Unity Projects\IC-AR`\Assets\" + nome + ".mp3";
 		var pathImg = @"C:\Users\gabri\Documents\Unity Projects\IC-AR`\Assets\" + nomeImg + ".png";
+		var pathModel = @"C:\Users\gabri\Documents\Unity Projects\IC-AR`\Assets\" + nomeModel + ".obj";
 
 		try {
 			var dataMp3 = getFileBytes(db, "colecao1", "5e6a1f481adf7a38446aafe6");
 			var dataImg = getFileBytes(db, "colecao1", "5e6a1f481adf7a38446aafe5");
+			var dataModel = getFileBytes(db, "colecao1", "5e6a1f481adf7a38446aafe8");
 
 			File.WriteAllBytes(pathMp3, dataMp3);
 			File.WriteAllBytes(pathImg, dataImg);
+			File.WriteAllBytes(pathModel, dataModel);
 		}
 		catch (Exception e) {
 			print("ERRO " + e);
-		}
-
-		
+		}	
 	}
-
-	/*
-	public static Stream getFileStream(IMongoDatabase db, string bucketName, string fileId)
-	{
-		MemoryStream stream = new MemoryStream();
-		GridFSBucketOptions options = new GridFSBucketOptions();
-		options.BucketName = bucketName;
-		var bucket = new GridFSBucket(db, options);
-		bucket.DownloadToStream(new ObjectId(fileId), stream);
-		return stream;
-	}
-
-	public void copyStream(string destPath) {
-
-		Stream stream = getFileStream(db, "colecao1", "5e6a1f481adf7a38446aafe6");
-
-		try
-		{
-			
-			using (var fileStream = new FileStream(destPath, FileMode.Create, FileAccess.Write))
-			{
-				stream.CopyTo(fileStream);
-			}
-			
-
-			print("FOI PORRA");
-		}
-		catch (Exception e) {
-			print(e);
-		}
-	
-	}*/
 }
